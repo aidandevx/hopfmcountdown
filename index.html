@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Countdown to 12 AM, Sunday, January 7th</title>
+  <style>
+    @font-face {
+        font-family: SFProDisplay-Bold;
+        src: url(SFProDisplay-Bold.ttf);
+     }
+    body {
+      background: #070D0D;
+      font-family: SFProDisplay-Bold;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-align: center;
+      padding: 50px;
+      color: #fff;
+    }
+    #countdown {
+      font-size: 36px;
+    }
+  </style>
+</head>
+<body>
+  <img style="width: 500px;" src="logotype.png">
+  <h1>Website Release In...</h1>
+  <div id="countdown"></div>
+
+  <script>
+    // Set the target time to 12 AM on Sunday, January 7th
+    const targetTime = new Date('January 7, 2024 00:00:00');
+
+    function updateCountdown() {
+      const currentTime = new Date();
+      const timeDifference = targetTime - currentTime;
+
+      if (timeDifference > 0) {
+        const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+        document.getElementById('countdown').innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      } else {
+        // Redirect to a different page once the countdown hits zero
+        window.location.href = 'new.html';
+      }
+    }
+
+    // Update the countdown every second
+    setInterval(updateCountdown, 1000);
+
+    // Initial call to display the countdown
+    updateCountdown();
+  </script>
+
+</body>
+</html>
